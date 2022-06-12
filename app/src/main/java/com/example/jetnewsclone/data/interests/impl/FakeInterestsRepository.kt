@@ -21,8 +21,8 @@ import kotlinx.coroutines.sync.withLock
  * Created by chukimmuoi on 24/05/2022.
  */
 /**
- * Implementation of InterestRepository that returns a hardcoded list of
- * topics, people and publications synchronously.
+ * Triển khai Hệ thống lưu trữ quan tâm trả về một danh sách được mã hóa cứng
+ * về các topics, people và publications một cách đồng bộ.
  */
 @OptIn(ExperimentalCoroutinesApi::class)
 class FakeInterestsRepository: InterestsRepository {
@@ -66,13 +66,13 @@ class FakeInterestsRepository: InterestsRepository {
         )
     }
 
-    // for now, keep the selections in memory
+    // bây giờ, hãy giữ các lựa chọn trong bộ nhớ
     // Lắng nghe khi có thay đổi giá trị.
     private val selectedTopics = MutableStateFlow(setOf<TopicSelection>())
     private val selectedPeople = MutableStateFlow(setOf<String>())
     private val selectedPublications = MutableStateFlow(setOf<String>())
 
-    // Used to make suspend functions that read and update state safe to call from any thread
+    // Được sử dụng để tạm ngừng các chức năng đọc và cập nhật trạng thái an toàn để gọi từ bất kỳ chuỗi nào
     // An toàn khi gọi nhiều coroutine.
     private val mutex = Mutex()
 

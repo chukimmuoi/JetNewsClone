@@ -14,7 +14,7 @@ import kotlin.Metadata
  * Created by chukimmuoi on 24/05/2022.
  */
 /**
- * Define hardcoded posts to avoid handling any non-ui operations.
+ * Xác định các bài đăng được mã hóa cứng để tránh xử lý bất kỳ hoạt động không phải ui nào.
  */
 
 val pietro = PostAuthor(

@@ -1,6 +1,8 @@
 package com.example.jetnewsclone
 
 import android.app.Application
+import com.example.jetnewsclone.data.AppContainer
+import com.example.jetnewsclone.data.AppContainerImpl
 
 /**
  * @author: My Project
@@ -13,7 +15,11 @@ import android.app.Application
  */
 class JetNewsApplication: Application() {
 
+    // AppContainer instance used by the rest of classes to obtain dependencies
+    lateinit var container: AppContainer
+
     override fun onCreate() {
         super.onCreate()
+        container = AppContainerImpl(this)
     }
 }

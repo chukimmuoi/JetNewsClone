@@ -24,16 +24,16 @@ import kotlinx.coroutines.sync.withLock
  * Created by chukimmuoi on 24/05/2022.
  */
 /**
- * Implementation of PostsRepository that returns a hardcoded list of
- * posts with resources after some delay in a background thread.
+ * Việc triển khai PostsRepository trả về danh sách các bài đăng được mã hóa cứng
+ * với các tài nguyên sau một số thời gian trì hoãn trong một chuỗi nền.
  */
 @OptIn(ExperimentalCoroutinesApi::class)
 class FakePostsRepository: PostsRepository {
 
-    // for now, store these in memory
+    // Bây giờ, hãy lưu trữ những thứ này trong bộ nhớ
     private val favorites = MutableStateFlow<Set<String>>(setOf())
 
-    // Used to make suspend functions that read and update state safe to call from any thread
+    // Được sử dụng để tạm ngừng các chức năng đọc và cập nhật trạng thái an toàn để gọi từ bất kỳ chuỗi nào
     private val mutex = Mutex()
 
     override suspend fun getPost(postId: String?): Result<Post> {
@@ -70,14 +70,14 @@ class FakePostsRepository: PostsRepository {
         }
     }
 
-    // used to drive "random" failure in a predictable pattern, making the first request always
-    // succeed
+    // được sử dụng để thúc đẩy thất bại "ngẫu nhiên" theo một mô hình có thể dự đoán được,
+    // làm cho yêu cầu đầu tiên luôn thành công
     private var requestCount = 0
 
     /**
-     * Randomly fail some loads to simulate a real network.
+     * Ngẫu nhiên không thành công một số tải để mô phỏng một mạng thực.
      *
-     * This will fail deterministically every 5 requests
+     * Điều này sẽ không thành công một cách xác định sau mỗi 5 yêu cầu
      */
     private fun shouldRandomlyFail(): Boolean = ++requestCount % 5 == 0
 }
